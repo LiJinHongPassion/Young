@@ -22,9 +22,9 @@ public class MessageController {
 	
 	@RequestMapping(value="/message/getUnreadMsg",method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String getUnreadMsg(@RequestParam("message_id") String message_id){
+	public String getUnreadMsg(@RequestParam("user_id") String receiver_id){
 		
-		List<Map<String, Object>> result = messageService.getUnreadMsg(message_id);
+		List<Map<String, Object>> result = messageService.getUnreadMsg(receiver_id);
 		
 		return JSON.toJSON(result).toString().replace("\"", "'");
 	}
