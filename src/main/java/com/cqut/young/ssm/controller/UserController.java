@@ -42,10 +42,12 @@ public class UserController {
 	
 	@RequestMapping(value="/user/updateUser",method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String updateUser(@RequestParam("properties") Map<String, Object> properties){
-		
-		Map<String, Object> result = userService.updateUser(properties);
-		
+	public String updateUser(@RequestParam("properties") String properties){
+
+		Map<String, Object> maps = (Map<String, Object>) JSON.parse(properties);
+
+		Map<String, Object> result = userService.updateUser(maps);
+
 		return JSON.toJSON(result).toString().replace("\"", "'");
 	}
 	
